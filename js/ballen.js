@@ -1,5 +1,5 @@
-var xSize = 800;
-var ySize = 600;
+var xSize = 1520;
+var ySize = 755;
 var bal1;
 
 function setup(){
@@ -8,14 +8,16 @@ function setup(){
   bal1.xPos = 21;
   bal1.yPos = 21;
   bal1.radius = 10;
-  bal1.xSpeed = 5;
-  bal1.ySpeed = 5;
+  bal1.xSpeed = 10;
+  bal1.ySpeed = 10;
 }
 
 function draw(){
-  background(100);
+  background(0);
   bal1.teken();
   bal1.beweeg();
+  rect(30, 20, 20, 125);
+  rect(1470, 20, 20, 125);
 }
 
 function Bal(){
@@ -26,6 +28,7 @@ function Bal(){
   this.ySpeed;
 
   this.teken = function(){
+    fill(255, 255, 255);
     ellipse(this.xPos, this.yPos, 2*this.radius, 2*this.radius);
   }
 
