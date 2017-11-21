@@ -20,19 +20,20 @@ function draw(){
   background(0);
   bal1.teken();
   bal1.beweeg();
+  bal1.check();
   rect(player2_x, player2_y, 20, 125);
   rect(player1_x, player1_y, 20, 125);
   if (keyIsDown(UP_ARROW)){
-       player1_y -= 8;
+       player1_y -= 9;
        console.log("Boven");
      } else if (keyIsDown(DOWN_ARROW)){
-       player1_y += 8;
+       player1_y += 9;
        console.log("Beneden");
      } if (keyIsDown(87)){
-       player2_y -= 8;
+       player2_y -= 9;
        console.log("Beneden");
      } else if (keyIsDown(83)){
-       player2_y += 8;
+       player2_y += 9;
        console.log("Beneden");
      } if (player2_y < 0){
        player2_y = 0;
@@ -51,6 +52,13 @@ function Bal(){
   this.radius;
   this.xSpeed;
   this.ySpeed;
+
+  this.check = function(){
+    if (this.yPos > player2_y && this.yPos < player2_y + 125 && this.xPos < player2_x){
+      background(250, 10, 10);
+      console.log("Geraakt");
+    } 
+  }
 
   this.teken = function(){
     fill(255, 255, 255);
