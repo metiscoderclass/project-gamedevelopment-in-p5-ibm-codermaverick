@@ -38,6 +38,10 @@ function draw(){
        player2_y = 0;
      } if (player2_y > 630){
        player2_y = 630;
+     } if (player1_y < 0){
+       player1_y = 0;
+     } if (player1_y > 630){
+       player1_y = 630;
      }
 }
 
