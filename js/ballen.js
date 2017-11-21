@@ -3,6 +3,8 @@ var ySize = 755;
 var bal1;
 var player1_y = 70;
 var player2_y = 70;
+var player2_x = 30;
+var player1_x = 1470;
 
 function setup(){
   createCanvas(xSize, ySize);
@@ -18,8 +20,8 @@ function draw(){
   background(0);
   bal1.teken();
   bal1.beweeg();
-  rect(30, player2_y, 20, 125);
-  rect(1470, player1_y, 20, 125);
+  rect(player2_x, player2_y, 20, 125);
+  rect(player1_x, player1_y, 20, 125);
   if (keyIsDown(UP_ARROW)){
        player1_y -= 8;
        console.log("Boven");
@@ -32,6 +34,10 @@ function draw(){
      } else if (keyIsDown(83)){
        player2_y += 8;
        console.log("Beneden");
+     } if (player2_y < 0){
+       player2_y = 0;
+     } if (player2_y > 630){
+       player2_y = 630;
      }
 }
 
