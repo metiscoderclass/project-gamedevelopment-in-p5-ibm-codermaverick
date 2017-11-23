@@ -5,6 +5,8 @@ var player1_y = 70;
 var player2_y = 70;
 var player2_x = 30;
 var player1_x = 1470;
+var score_player1 = 0;
+var score_player2 = 0;
 var distance = 125;
 
 function setup(){
@@ -37,13 +39,13 @@ function draw(){
        player2_y += 9;
        console.log("Beneden player 2");
      } if (player2_y < 0){
-       player2_y = 0;
+        player2_y = 0;
      } if (player2_y > 630){
-       player2_y = 630;
+        player2_y = 630;
      } if (player1_y < 0){
-       player1_y = 0;
+        player1_y = 0;
      } if (player1_y > 630){
-       player1_y = 630;
+        player1_y = 630;
      }
 }
 
@@ -72,8 +74,29 @@ function Bal(){
   }
 
   this.beweeg = function(){
-    if (this.xPos > width - this.radius || this.xPos < this.radius){
+    if (this.xPos > width - this.radius){
       this.xSpeed = -this.xSpeed;
+      score_player2 = score_player2 + 1;
+      console.log("Score player 2: " + score_player2);
+      background(222, 0, 0);
+      this.xPos = xSize / 2;
+      this.yPos = ySize /2;
+      this.ySpeed = this.ySpeed + 1;
+      this.xSpeed = this.xSpeed + 1;
+      console.log("Speed: " + this.xSpeed)
+      if (this.xSpeed > 10){
+        this.xSpeed = 4;
+      }
+    }
+    if(this.xPos < this.radius){
+      this.xSpeed = -this.xSpeed;
+      score_player1 = score_player1 + 1;
+      console.log("Score player 1: " + score_player1);
+      background(0, 0, 255);
+      this.xPos = xSize / 2;
+      this.yPos = ySize /2;
+      this.ySpeed = this.ySpeed + 3;
+      this.xSpeed = this.xSpeed + 3;
     }
     if (this.yPos > height - this.radius || this.yPos < this.radius){
       this.ySpeed = -this.ySpeed;
