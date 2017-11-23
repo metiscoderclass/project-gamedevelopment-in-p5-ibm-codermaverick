@@ -12,11 +12,11 @@ var distance = 125;
 function setup(){
   createCanvas(xSize, ySize);
   bal1 = new Bal();
-  bal1.xPos = 21;
-  bal1.yPos = 21;
+  bal1.xPos = this.xSize / 2;
+  bal1.yPos = this.ySize / 2;
   bal1.radius = 10;
-  bal1.xSpeed = 7;
-  bal1.ySpeed = 7;
+  bal1.xSpeed = 8;
+  bal1.ySpeed = 8;
 }
 
 function draw(){
@@ -38,10 +38,34 @@ function draw(){
      } else if (keyIsDown(83)){
        player2_y += 9;
        console.log("Beneden player 2");
-     } if (player2_y < 0){
+     } if (keyIsDown(32)){
+       bal1.ySpeed = bal1.ySpeed + 1;
+       if (bal1.ySpeed > 8){
+         bal1.ySpeed = 1;
+       }
+       console.log("Spatie is ingedrukt");
+       console.log("Speed: " + bal1.ySpeed)
+     } if (keyIsDown(68)){
+       bal1.ySpeed = bal1.ySpeed + 1;
+       if (bal1.ySpeed > 8){
+         bal1.ySpeed = 1;
+       }
+       console.log("D is ingedrukt");
+       console.log("Speed: " + bal1.ySpeed)
+     } if (keyIsDown(190)){
+       bal1.ySpeed = bal1.ySpeed - 1;
+       if (bal1.ySpeed > 8){
+         bal1.ySpeed = 1;
+       }
+       console.log("> is ingedrukt");
+       console.log("Speed: " + bal1.ySpeed)
+     } if (bal1.xSpeed > 30){
+       bal1.xSpeed = 7;
+     }
+     if (player2_y < 0){
         player2_y = 0;
      } if (player2_y > 630){
-        player2_y = 630;
+        player2_y = 630
      } if (player1_y < 0){
         player1_y = 0;
      } if (player1_y > 630){
@@ -78,7 +102,7 @@ function Bal(){
       this.xSpeed = -this.xSpeed;
       score_player2 = score_player2 + 1;
       console.log("Score player 2: " + score_player2);
-      background(222, 0, 0);
+      //background(222, 0, 0);
       this.xPos = xSize / 2;
       this.yPos = ySize /2;
       this.ySpeed = this.ySpeed + 1;
@@ -92,7 +116,7 @@ function Bal(){
       this.xSpeed = -this.xSpeed;
       score_player1 = score_player1 + 1;
       console.log("Score player 1: " + score_player1);
-      background(0, 0, 255);
+      //background(0, 0, 255);
       this.xPos = xSize / 2;
       this.yPos = ySize /2;
       this.ySpeed = this.ySpeed + 3;
