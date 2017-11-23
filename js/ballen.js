@@ -5,6 +5,7 @@ var player1_y = 70;
 var player2_y = 70;
 var player2_x = 30;
 var player1_x = 1470;
+var distance = 125;
 
 function setup(){
   createCanvas(xSize, ySize);
@@ -12,8 +13,8 @@ function setup(){
   bal1.xPos = 21;
   bal1.yPos = 21;
   bal1.radius = 10;
-  bal1.xSpeed = 6;
-  bal1.ySpeed = 6;
+  bal1.xSpeed = 7;
+  bal1.ySpeed = 7;
 }
 
 function draw(){
@@ -21,20 +22,20 @@ function draw(){
   bal1.teken();
   bal1.beweeg();
   bal1.check();
-  rect(player2_x, player2_y, 20, 125);
-  rect(player1_x, player1_y, 20, 125);
+  rect(player2_x, player2_y, 20, distance);
+  rect(player1_x, player1_y, 20, distance);
   if (keyIsDown(UP_ARROW)){
        player1_y -= 9;
-       console.log("Boven");
+       console.log("Boven player 1");
      } else if (keyIsDown(DOWN_ARROW)){
        player1_y += 9;
-       console.log("Beneden");
+       console.log("Beneden player 1");
      } if (keyIsDown(87)){
        player2_y -= 9;
-       console.log("Beneden");
+       console.log("Boven player 2");
      } else if (keyIsDown(83)){
        player2_y += 9;
-       console.log("Beneden");
+       console.log("Beneden player 2");
      } if (player2_y < 0){
        player2_y = 0;
      } if (player2_y > 630){
@@ -54,10 +55,15 @@ function Bal(){
   this.ySpeed;
 
   this.check = function(){
-    if (this.yPos > player2_y && this.yPos < player2_y + 125 && this.xPos < player2_x){
-      background(250, 10, 10);
+    if (this.yPos > player2_y && this.yPos < player2_y + distance && this.xPos < player2_x){
+      this.xSpeed = -this.xSpeed;
+      this.ySpeed = -this.ySpeed;
       console.log("Geraakt");
-    } 
+    }  if (this.yPos > player1_y && this.yPos < player1_y + distance && this.xPos > player1_x){
+        this.xSpeed = -this.xSpeed;
+        this.ySpeed = -this.ySpeed;
+        console.log("Geraakt");
+      }
   }
 
   this.teken = function(){
