@@ -21,25 +21,37 @@ function setup(){
 
 function draw(){
   background(0);
+  textFont("fantasy")
+  fill(255);
+  textSize(70);
+  text(score_player1, 1390, 60);
+  fill(255);
+  textSize(70);
+  text(score_player2, 60, 60);
   bal1.teken();
   bal1.beweeg();
   bal1.check();
   rect(player2_x, player2_y, 20, distance);
   rect(player1_x, player1_y, 20, distance);
+  if (score_player1 == 10){
+    console.log("player 1 heeft gewonnen")
+  } if (score_player2 == 10){
+    console.log("Player 2 heeft gewonnen joepie")
+  }
   if (keyIsDown(UP_ARROW)){
-       player1_y -= 9;
+       player1_y -= 10;
        console.log("Boven player 1");
      } else if (keyIsDown(DOWN_ARROW)){
-       player1_y += 9;
+       player1_y += 10;
        console.log("Beneden player 1");
      } if (keyIsDown(87)){
-       player2_y -= 9;
+       player2_y -= 10;
        console.log("Boven player 2");
      } else if (keyIsDown(83)){
-       player2_y += 9;
+       player2_y += 10;
        console.log("Beneden player 2");
      } if (keyIsDown(32)){
-       bal1.ySpeed = bal1.ySpeed + 1;
+       bal1.ySpeed = bal1.ySpeed + 7;
        if (bal1.ySpeed > 8){
          bal1.ySpeed = 1;
        }
@@ -54,15 +66,14 @@ function draw(){
        console.log("Speed: " + bal1.ySpeed)
      } if (keyIsDown(190)){
        bal1.ySpeed = bal1.ySpeed - 1;
-       if (bal1.ySpeed > 8){
-         bal1.ySpeed = 1;
-       }
+        if (bal1.ySpeed > 8){
+          bal1.ySpeed = 1;
+        }
        console.log("> is ingedrukt");
        console.log("Speed: " + bal1.ySpeed)
      } if (bal1.xSpeed > 30){
        bal1.xSpeed = 7;
-     }
-     if (player2_y < 0){
+     } if (player2_y < 0){
         player2_y = 0;
      } if (player2_y > 630){
         player2_y = 630
@@ -85,11 +96,11 @@ function Bal(){
       this.xSpeed = -this.xSpeed;
       this.ySpeed = -this.ySpeed;
       console.log("Geraakt");
-    }  if (this.yPos > player1_y && this.yPos < player1_y + distance && this.xPos > player1_x){
-        this.xSpeed = -this.xSpeed;
-        this.ySpeed = -this.ySpeed;
-        console.log("Geraakt");
-      }
+    }if (this.yPos > player1_y && this.yPos < player1_y + distance && this.xPos > player1_x){
+      this.xSpeed = -this.xSpeed;
+      this.ySpeed = -this.ySpeed;
+      console.log("Geraakt");
+     }
   }
 
   this.teken = function(){
@@ -102,12 +113,16 @@ function Bal(){
       this.xSpeed = -this.xSpeed;
       score_player2 = score_player2 + 1;
       console.log("Score player 2: " + score_player2);
-      //background(222, 0, 0);
       this.xPos = xSize / 2;
       this.yPos = ySize /2;
       this.ySpeed = this.ySpeed + 1;
       this.xSpeed = this.xSpeed + 1;
       console.log("Speed: " + this.xSpeed)
+    if (score_player2 == 10){
+      fill(255);
+      textSize(70);
+      text("Gefeliciteerd player 2", 1300, 00);
+    }
       if (this.xSpeed > 10){
         this.xSpeed = 4;
       }
@@ -116,7 +131,11 @@ function Bal(){
       this.xSpeed = -this.xSpeed;
       score_player1 = score_player1 + 1;
       console.log("Score player 1: " + score_player1);
-      //background(0, 0, 255);
+      if (score_player1 > 10){
+        fill(255);
+        textSize(70);
+        text("Gefeliciteerd player 1", 1300, 00);
+      }
       this.xPos = xSize / 2;
       this.yPos = ySize /2;
       this.ySpeed = this.ySpeed + 3;
