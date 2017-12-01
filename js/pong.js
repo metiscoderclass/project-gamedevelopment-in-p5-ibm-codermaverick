@@ -9,7 +9,7 @@ var score_player1 = 0;
 var score_player2 = 0;
 var distance = 125;
 
-function setup(){
+function setup() {
   setFrameRate(35)
   createCanvas(xSize, ySize);
   bal1 = new Bal();
@@ -20,8 +20,8 @@ function setup(){
   bal1.ySpeed = 8;
 }
 
-function draw(){
-  background(0);
+function draw() {
+  background(0, 0, 0, 200);
   textFont("fantasy")
   fill(255);
   textSize(70);
@@ -40,16 +40,16 @@ function draw(){
     console.log("Player 2 heeft gewonnen joepie")
   }
   if (keyIsDown(UP_ARROW)){
-       player1_y -= 15;
+       player1_y -= 18;
        console.log("Boven player 1");
      } else if (keyIsDown(DOWN_ARROW)){
-       player1_y += 15;
+       player1_y += 18;
        console.log("Beneden player 1");
      } if (keyIsDown(87)){
-       player2_y -= 15;
+       player2_y -= 18;
        console.log("Boven player 2");
      } else if (keyIsDown(83)){
-       player2_y += 15;
+       player2_y += 18;
        console.log("Beneden player 2");
      } if (keyIsDown(32)){
        bal1.ySpeed = bal1.ySpeed + 7;
@@ -95,14 +95,13 @@ function Bal(){
 
   this.check = function(){
     if (this.yPos > player2_y && this.yPos < player2_y + distance && this.xPos < player2_x + 25){
-      this.xSpeed = -this.xSpeed * (Math.random() * 1);
+      this.xSpeed = -(this.xSpeed + (Math.floor(Math.random() * 3)+1));
+      console.log(this.xSpeed);
       console.log("Random");
-      this.ySpeed = -this.xSpeed * (Math.random() * 1);
       console.log("Geraakt");
     }if (this.yPos > player1_y && this.yPos < player1_y + distance && this.xPos > player1_x){
-      this.xSpeed = -this.xSpeed * (Math.random() * 1);
+      this.xSpeed = -(this.xSpeed + (Math.floor(Math.random() * 3)+1));
       console.log("Random");
-      this.ySpeed = -this.xSpeed * (Math.random() * 1);
       console.log("Geraakt");
      }
   }
@@ -125,7 +124,7 @@ function Bal(){
     if (score_player2 == 10){
       fill(255);
       textSize(70);
-      text("Gefeliciteerd player 2", 1300, 00);
+      text("Gefeliciteerd player 2", 1300, 0);
     }
       if (this.xSpeed > 10){
         this.xSpeed = 4;
@@ -138,7 +137,7 @@ function Bal(){
       if (score_player1 > 10){
         fill(255);
         textSize(70);
-        text("Gefeliciteerd player 1", 1300, 00);
+        text("Gefeliciteerd player 1", 1300, 0);
       }
       this.xPos = xSize / 2;
       this.yPos = ySize /2;
