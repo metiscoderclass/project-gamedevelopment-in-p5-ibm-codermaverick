@@ -10,6 +10,7 @@ var score_player2 = 0;
 var distance = 125;
 
 function setup(){
+  setFrameRate(35)
   createCanvas(xSize, ySize);
   bal1 = new Bal();
   bal1.xPos = this.xSize / 2;
@@ -39,16 +40,16 @@ function draw(){
     console.log("Player 2 heeft gewonnen joepie")
   }
   if (keyIsDown(UP_ARROW)){
-       player1_y -= 10;
+       player1_y -= 15;
        console.log("Boven player 1");
      } else if (keyIsDown(DOWN_ARROW)){
-       player1_y += 10;
+       player1_y += 15;
        console.log("Beneden player 1");
      } if (keyIsDown(87)){
-       player2_y -= 10;
+       player2_y -= 15;
        console.log("Boven player 2");
      } else if (keyIsDown(83)){
-       player2_y += 10;
+       player2_y += 15;
        console.log("Beneden player 2");
      } if (keyIsDown(32)){
        bal1.ySpeed = bal1.ySpeed + 7;
@@ -85,6 +86,7 @@ function draw(){
 }
 
 function Bal(){
+  setFrameRate(35)
   this.xPos;
   this.yPos;
   this.radius;
@@ -92,13 +94,15 @@ function Bal(){
   this.ySpeed;
 
   this.check = function(){
-    if (this.yPos > player2_y && this.yPos < player2_y + distance && this.xPos < player2_x){
-      this.xSpeed = -this.xSpeed;
-      this.ySpeed = -this.ySpeed;
+    if (this.yPos > player2_y && this.yPos < player2_y + distance && this.xPos < player2_x + 25){
+      this.xSpeed = -this.xSpeed * (Math.random() * 1);
+      console.log("Random");
+      this.ySpeed = -this.xSpeed * (Math.random() * 1);
       console.log("Geraakt");
     }if (this.yPos > player1_y && this.yPos < player1_y + distance && this.xPos > player1_x){
-      this.xSpeed = -this.xSpeed;
-      this.ySpeed = -this.ySpeed;
+      this.xSpeed = -this.xSpeed * (Math.random() * 1);
+      console.log("Random");
+      this.ySpeed = -this.xSpeed * (Math.random() * 1);
       console.log("Geraakt");
      }
   }
@@ -115,8 +119,8 @@ function Bal(){
       console.log("Score player 2: " + score_player2);
       this.xPos = xSize / 2;
       this.yPos = ySize /2;
-      this.ySpeed = this.ySpeed + 1;
-      this.xSpeed = this.xSpeed + 1;
+      this.ySpeed = this.ySpeed + 0.01;
+      this.xSpeed = this.xSpeed + 0.01;
       console.log("Speed: " + this.xSpeed)
     if (score_player2 == 10){
       fill(255);
@@ -138,8 +142,8 @@ function Bal(){
       }
       this.xPos = xSize / 2;
       this.yPos = ySize /2;
-      this.ySpeed = this.ySpeed + 3;
-      this.xSpeed = this.xSpeed + 3;
+      this.ySpeed = this.ySpeed + 0.1;
+      this.xSpeed = this.xSpeed + 0.1;
     }
     if (this.yPos > height - this.radius || this.yPos < this.radius){
       this.ySpeed = -this.ySpeed;

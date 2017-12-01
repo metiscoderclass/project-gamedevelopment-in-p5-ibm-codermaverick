@@ -1,4 +1,4 @@
-var audio = new Audio('Pong_music.mp3');
+var audio = new Audio('pong_music.mp3');
 
 setInterval(function(){
   audio.play();
